@@ -30,6 +30,7 @@ function createCards(answers){
 	})
 }
 
+// Get the cards from file and add them to an array
 function getCards(answers){
 	var cards = [];
 	
@@ -45,6 +46,10 @@ function getCards(answers){
 	});
 }
 
+//depending on the game that was choosen add the neccesary information
+//Flash Card adds the front and back properties to the array
+// Fill in adds the cloze, partial and full text properties to the array
+// once complete call the appropriate function or loop function to add more to the array
 function addToArray(action, cards, i, cardDeck=[]){
 	if(action === "Flash cards" && i < cards.length){
 		cardDeck.push(new basicCards(cards[i], cards[i+1]));
@@ -64,6 +69,7 @@ function addToArray(action, cards, i, cardDeck=[]){
 	}
 }
 
+// Use inquire to display the front and then the back when enter key is hit
 function showBasic(cardDeck, i){
 	if(i < cardDeck.length){
 		inquire
@@ -82,6 +88,9 @@ function showBasic(cardDeck, i){
 	}
 }
 
+// Use inquire to display the partial phrase and the person can type in the missing part
+// If guess is incorrect inform them and let them try again
+// If correct mvoe on to the next card
 function showCloze(cardDeck, i){
 	if(i < cardDeck.length){
 		inquire
@@ -98,7 +107,6 @@ function showCloze(cardDeck, i){
 					console.log("\r\n" + cardDeck[i].fullText);
 					return true		
 				}
-
 			}
 		])
 		.then(function(){
